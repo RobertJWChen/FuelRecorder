@@ -30,7 +30,7 @@ import studio.robert.fuelrecorder.data.FuelRecord;
 public class RecordRepositoryTest {
     //Test Data
 
-    private List<FuelRecord> mTestRecords = initTestDatas();
+    private List<FuelRecord> mTestRecords = initTestData();
     private RecordRepository mRecordRepository;
 
     @Mock
@@ -168,12 +168,19 @@ public class RecordRepositoryTest {
     }
 
     @Test
+    public void deleteAllRecords() {
+        mRecordRepository.saveRecord(mTestRecords.get(0));
+        mRecordRepository.deleteAllRecords();
+        assertThat(mRecordRepository.mCachedRecords.size(), is(0));
+    }
+
+    @Test
     public void refresh() {
         mRecordRepository.refreshRecords();
         assertThat(mRecordRepository.mCacheIsDirty, is(true));
     }
 
-    private List<FuelRecord> initTestDatas() {
+    private List<FuelRecord> initTestData() {
         List<FuelRecord> records = new ArrayList<>();
         DateFormat df = new SimpleDateFormat("yyy-MM-dd");
         try {

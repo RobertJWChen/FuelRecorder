@@ -153,6 +153,15 @@ public class RecordRepository implements IRecordSource {
     }
 
     @Override
+    public void deleteAllRecords() {
+        mLocalDataCtrl.deleteAllRecords();
+        if (mCachedRecords == null) {
+            mCachedRecords = new LinkedHashMap<>();
+        }
+        mCachedRecords.clear();
+    }
+
+    @Override
     public void refreshRecords() {
         mCacheIsDirty = true;
     }

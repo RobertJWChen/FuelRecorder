@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 import static studio.robert.fuelrecorder.utils.Preconditions.checkNotNull;
@@ -89,14 +90,14 @@ public class FuelRecord {
 
     @Override
     public boolean equals(Object obj) {
-        //return super.equals(obj);
-        if (!(obj instanceof FuelRecord)) return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         FuelRecord record = (FuelRecord) obj;
-        return (record.getId() == mId) &&
-                (record.getDateTimeStamp() == mDateTimeStamp) &&
-                (record.getAmount() == mAmount) &&
-                (record.getMileage() == mMileAge) &&
-                (record.getPrice() == mPrice) &&
-                (record.getNote().equals(mNote));
+        return Objects.equals(mId, record.getId())&&
+                Objects.equals(record.getDateTimeStamp(), mDateTimeStamp) &&
+                Objects.equals(record.getAmount(), mAmount) &&
+                Objects.equals(record.getMileage(), mMileAge) &&
+                Objects.equals(record.getPrice(), mPrice) &&
+                Objects.equals(mNote, record.getNote());
     }
 }

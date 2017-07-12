@@ -12,7 +12,7 @@ import studio.robert.fuelrecorder.data.FuelRecord;
 
 public interface IRecordSource {
     interface LoadDataCallback {
-        void onDataLoaded(List<FuelRecord> record);
+        void onDataLoaded(List<FuelRecord> records);
         void onDataNotAvailable();
     }
 
@@ -27,5 +27,8 @@ public interface IRecordSource {
     void saveRecord(@NotNull FuelRecord record);
     void updateRecord(@NotNull FuelRecord record);
     void deleteRecord(@NotNull String recordId);
+
+    void deleteAllRecords();
+
     void refreshRecords();
 }

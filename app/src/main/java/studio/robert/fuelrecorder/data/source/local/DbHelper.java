@@ -11,11 +11,11 @@ import studio.robert.fuelrecorder.data.source.local.Contract.*;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "historydb";
+    public static final String DB_NAME = "records.db";
     public static final int DB_VERSION = 1;
     private static final String TEXT_TYPE = " TEXT";
-    private static final String INTEGER_TYPE = "INTEGER";
-    private static final String REAL_TYPE = "REAL";
+    private static final String INTEGER_TYPE = " INTEGER";
+    private static final String REAL_TYPE = " REAL";
     private static final String COMMA_SEP = ",";
 
     private static final String CREATE_TABLE = "CREATE TABLE "+ RecordEntry.TABLE_NAME+" ("+

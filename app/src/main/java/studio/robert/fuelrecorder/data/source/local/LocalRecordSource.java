@@ -30,7 +30,7 @@ public class LocalRecordSource implements IRecordSource {
         mDbHelper = new DbHelper(context);
     }
 
-    public LocalRecordSource getInstance(@NotNull Context context) {
+    public static LocalRecordSource getInstance(@NotNull Context context) {
         checkNotNull(context);
         if (INSTANCE == null) {
             INSTANCE = new LocalRecordSource(context);
@@ -88,7 +88,7 @@ public class LocalRecordSource implements IRecordSource {
                 RecordEntry.COL_MILEAGE,
                 RecordEntry.COL_NOTE
         };
-        String selection = RecordEntry.COL_NAME_ENTRY_ID + "LIKE ?";
+        String selection = RecordEntry.COL_NAME_ENTRY_ID + " LIKE ?";
         String[] selectionArgs = {recordId};
         FuelRecord record = null;
         Cursor c = db.query(RecordEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
@@ -119,7 +119,7 @@ public class LocalRecordSource implements IRecordSource {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(RecordEntry.COL_NAME_ENTRY_ID, record.getId());
-        cv.put(RecordEntry.COL_DATE, String.valueOf(record.getDate()));//TODO: check the correction of this line
+        cv.put(RecordEntry.COL_DATE, record.getDate().getTime());
         cv.put(RecordEntry.COL_AMOUNT, record.getAmount());
         cv.put(RecordEntry.COL_PRICE, record.getPrice());
         cv.put(RecordEntry.COL_MILEAGE, record.getMileage());
@@ -133,7 +133,7 @@ public class LocalRecordSource implements IRecordSource {
         checkNotNull(record);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(RecordEntry.COL_DATE, String.valueOf(record.getDate()));
+        cv.put(RecordEntry.COL_DATE, record.getDateTimeStamp());
         cv.put(RecordEntry.COL_AMOUNT, record.getAmount());
         cv.put(RecordEntry.COL_PRICE, record.getPrice());
         cv.put(RecordEntry.COL_MILEAGE, record.getMileage());
@@ -150,9 +150,16 @@ public class LocalRecordSource implements IRecordSource {
     public void deleteRecord(@NotNull String recordId) {
         checkNotNull(recordId);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        String selection = RecordEntry.COL_NAME_ENTRY_ID+"LIKE ?";
+        String selection = RecordEntry.COL_NAME_ENTRY_ID+" LIKE ?";
         String[] selectionArgs = {recordId};
         db.delete(RecordEntry.TABLE_NAME, selection, selectionArgs);
+        db.close();
+    }
+
+    @Override
+    public void deleteAllRecords() {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        db.delete(RecordEntry.TABLE_NAME, null, null);
         db.close();
     }
 
