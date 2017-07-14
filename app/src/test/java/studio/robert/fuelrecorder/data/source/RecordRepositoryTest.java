@@ -31,7 +31,7 @@ public class RecordRepositoryTest {
     //Test Data
 
     private List<FuelRecord> mTestRecords = initTestData();
-    private RecordRepository mRecordRepository;
+    private RecordsRepository mRecordRepository;
 
     @Mock
     private Context mContext;
@@ -61,7 +61,7 @@ public class RecordRepositoryTest {
         // inject the mocks in the test the initMocks method needs to be called.
         MockitoAnnotations.initMocks(this);
 
-        mRecordRepository = RecordRepository.getInstance(mLocalDataSource);
+        mRecordRepository = RecordsRepository.getInstance(mLocalDataSource);
     }
 
     @After
