@@ -15,9 +15,9 @@ import static studio.robert.fuelrecorder.utils.Preconditions.checkNotNull;
  * Created by robert on 2017/5/27.
  */
 
-public class RecordRepository implements IRecordSource {
+public class RecordsRepository implements IRecordSource {
 
-    private static RecordRepository INSTANCE = null;
+    private static RecordsRepository INSTANCE = null;
     private final IRecordSource mLocalDataCtrl;
     //TODO: remote repository... TBD
     //private final IRecordSource mRemoteDataCtrl;
@@ -26,15 +26,15 @@ public class RecordRepository implements IRecordSource {
     boolean mCacheIsDirty = false;//Variable to trigger refresh, prepare for handling the remote repository implementation
 
     //Constructor: set private to prevent directly access
-    private RecordRepository(@NotNull IRecordSource localCtrl) {
+    private RecordsRepository(@NotNull IRecordSource localCtrl) {
         mLocalDataCtrl = checkNotNull(localCtrl);
         //TODO: remote data repository
         //mRemoteDataCtrl = remoteCtrl;
     }
 
-    public static RecordRepository getInstance(IRecordSource localCtrl) {
+    public static RecordsRepository getInstance(IRecordSource localCtrl) {
         if (INSTANCE == null) {
-            INSTANCE = new RecordRepository(localCtrl);
+            INSTANCE = new RecordsRepository(localCtrl);
         }
         return INSTANCE;
     }

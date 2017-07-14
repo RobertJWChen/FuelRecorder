@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/text_amount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/text_mileage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/text_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000" />
+</LinearLayout>
